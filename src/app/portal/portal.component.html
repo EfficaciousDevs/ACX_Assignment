@@ -1,0 +1,63 @@
+<ul>
+  <li><a href="#">Hi, {{currentLoggedUser}}</a></li>
+  <li><a routerLink="/login">Logout</a></li>
+</ul>
+ 
+  
+  <div class="container">
+    <h2>Welcome to Employee Registration Portal</h2>
+   
+  <form class="formContainer">
+    <label >
+      Name:
+      <input type="text" placeholder="Enter your name" name="name" [(ngModel)]="name" required>
+    </label>
+    <label>
+      Mobile No. <input type="number" placeholder="Enter your mobile no" name="mobile" [(ngModel)]="mobile" required>
+    </label>
+    <label>
+      Address: <input type="text"  name="address" placeholder="Enter your address" [(ngModel)]="address" required>
+    </label>
+    <label>
+      Skills: <input type="text"  name="skill" placeholder="Enter your skills" [(ngModel)]="skills" required>
+    </label>
+    <label>
+      Hobbies: <input type="text"  name="hobbies" placeholder="Enter your hobbies" [(ngModel)]="hobbies" required>
+    </label>
+    
+    <button class="submit" type="button" [disabled]="!name && !mobile && !address && !skills && !hobbies" (click)="save()">Submit</button>
+    <button class="reset" type="reset">Reset</button>
+  </form> 
+  </div><br><br>
+        <div class="table_container" >
+          <button class="export_button" (click)="exportTableToCSV()">Export Data</button><br>
+          <table>
+            <thead>
+            <tr>
+              <th >Id</th>
+              <th >Name</th>
+              <th >Address</th>
+              <th >Mobile</th>
+              <th >Skills</th>
+              <th >Hobbies</th>
+              <th >Action</th>
+              
+            </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let employeeItem of employeeArray">
+              <td >{{employeeItem.employeeId  }}</td>
+              <td>{{employeeItem.employeeName }}</td>
+              <td>{{employeeItem.employeeAddress }}</td>
+              <td>{{employeeItem.employeeMobile }}</td>
+              <td>{{employeeItem.employeeSkills }}</td>
+              <td>{{employeeItem.employeeHobbies }}</td>
+              <td>
+                <span class="fa fa-edit" style="color:blue;cursor: pointer; font-weight: bold;"  (click)="setUpdate(employeeItem)">Update</span>
+                &nbsp;
+                <span class="fa fa-trash" style="color:red;cursor:pointer;font-weight: bold;" (click)="setDelete(employeeItem)">Delete</span>
+              </td>
+              </tr>
+            </tbody>
+          </table>
+          </div>
